@@ -1,4 +1,4 @@
-## Getting and Cleaning Data Project
+## Getting and Cleaning Data Course Project
 
 Kelly Crossley
 
@@ -48,46 +48,47 @@ Training Data -- Variables:
 - activityType = activity_labels.txt
 - trainingData = the merged dataset
 
-End of training data
+End of training data of Section 1
 	
-	Test data
-		--  Read in the data from the flat files
-		  -- xTest = x_test.txt
-		  -- yTest = y_test.txt
-		  -- subjectTest = subject_test.txt		 
-		--  Assign column names to the test data imported above
-			--  Import the subject file
-			--  import the X Test set
-			--  import the Y Test set
-		   
-		--  Create the final test set by merging the xTest, yTest and subjectTest data
-			-- testData = final test set			
-		--  Merge the 2 datasets to create a single dataset
-			-- MergedData = combined data		
-		--  Create a vector for the column names from the MergedData , which will be used
-	End of Test Data
+Test data -- Processes:
+- Read in the data from the flat files
+- Assign column names to the test data imported above
+- Import the subject file
+- import the X Test set
+- import the Y Test set
+- Create the final test set by merging the xTest, yTest and subjectTest data	
+- Merge the 2 datasets to create a single dataset
+- Create a vector for the column names from the MergedData , which will be used
+
+Test data -- Variables:
+- xTest = x_test.txt
+- yTest = y_test.txt
+- subjectTest = subject_test.txt		
+- testData = final test set	
+- MergedData = combined data
+
+End of Test Data of Section 1
 	
 ### Section 2. Extract only the measurements on the mean and standard deviation for each measurement. 
-    --   Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
-    --   Subset MergedData table based on the logicalVector to keep only desired columns	
+- Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
+- Subset MergedData table based on the logicalVector to keep only desired columns	
 	
 ### Section 3. Use descriptive activity names to name the activities in the data set
-	--   Merge the MergedData set with the acitivityType table to include descriptive activity names
-	--   Update the columnNames vector to include the new column names after merge
+- Merge the MergedData set with the acitivityType table to include descriptive activity names
+- Update the columnNames vector to include the new column names after merge
 
 ### Section 4. Appropriately label the data set with descriptive activity names.
-	--   Updating the columnNames vector to include the new column names after merge
-	--   Reassign the new descriptive column names to the MergedData set
+- Updating the columnNames vector to include the new column names after merge
+- Reassign the new descriptive column names to the MergedData set
 
 ### Section 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject. 
-Per the project instructions, we need to produce only a data set with the average of each variable for each activity and subject
-
---   Create a new table, MergedDataNoActivityType without the activityType column
---   Summarizing the MergedDataNoActivityType table to include just the mean of each variable for each activity and each subject
---   Merging the tidyData with activityType to include descriptive activity names
---   Export the tidyData set 
+Produce only a data set with the average of each variable for each activity and subject.
+- Create a new table, MergedDataNoActivityType without the activityType column
+- Summarizing the MergedDataNoActivityType table to include just the mean of each variable for each activity and each subject
+- Merging the tidyData with activityType to include descriptive activity names
+- Export the tidyData set 
 
 Variables
-	--  MergedDataWithoutActivityType
-	--  tidyData
+- MergedDataWithoutActivityType
+- tidyData
 	
