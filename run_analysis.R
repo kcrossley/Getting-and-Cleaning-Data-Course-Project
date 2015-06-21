@@ -37,10 +37,10 @@
             features     = read.table('./features.txt',header=FALSE);
         
         # Assign column names from the data imported
-          columnNames(activityType)  = c('activityId','activityType');
-          columnNames(yTrain)        = "activityId";
-          columnNames(subjectTrain)  = "subjectId";
-          columnNames(xTrain)        = features[,2]; 
+          colnames(activityType)  = c('activityId','activityType');
+          colnames(yTrain)        = "activityId";
+          colnames(subjectTrain)  = "subjectId";
+          colnames(xTrain)        = features[,2]; 
 
               
         # Create the final training set by merging the subject_test, xtest and ytest files
@@ -57,11 +57,11 @@
      
     # Assign column names to the test data imported above
         # Import the subject file
-          columnNames(subjectTest) = "subjectId";
+        colnames(subjectTest) = "subjectId";
         # import the X Test set
-        columnNames(xTest)       = features[,2]; 
+        colnames(xTest)       = features[,2]; 
         # import the Y Test set
-        columnNames(yTest)       = "activityId";
+        colnames(yTest)       = "activityId";
        
     # Create the final test set by merging the xTest, yTest and subjectTest data
         testData = cbind(yTest,subjectTest,xTest);
@@ -71,7 +71,7 @@
     
     # Create a vector for the column names from the MergedData , which will be used
     # to select the desired mean() & stddev() columns
-      columnNames  = columnNames(MergedData); 
+      colnames  = colnames(MergedData); 
 
     ## ---#---#  TEST Set Data #---#---# 
 
@@ -81,7 +81,7 @@
 # 2. Extract only the measurements on the mean and standard deviation for each measurement. 
     
     # Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
-    logicalVector = (grepl("activity..",columnNames) | grepl("subject..",columnNames) | grepl("-mean..",columnNames) & !grepl("-meanFreq..",columnNames) & !grepl("mean..-",columnNames) | grepl("-std..",columnNames) & !grepl("-std()..-",columnNames));
+    logicalVector = (grepl("activity..",colnames) | grepl("subject..",colnames) | grepl("-mean..",colnames) & !grepl("-meanFreq..",colnames) & !grepl("mean..-",colnames) | grepl("-std..",colnames) & !grepl("-std()..-",colnames));
     
     # Subset MergedData table based on the logicalVector to keep only desired columns
     MergedData = MergedData[logicalVector==TRUE];
@@ -94,8 +94,8 @@
     # Merge the MergedData set with the acitivityType table to include descriptive activity names
     MergedData = merge(MergedData,activityType,by='activityId',all.x=TRUE);
     
-    # Updating the columnNames vector to include the new column names after merge
-    columnNames  = columnNames(MergedData); 
+    # Updating the colnames vector to include the new column names after merge
+    colnames  = colnames(MergedData); 
 
 
 # __!__!__!  End of Section 3  __!__!__!
@@ -105,24 +105,24 @@
 # 4. Appropriately label the data set with descriptive activity names. 
 
     # Cleaning up the variable names
-    for (i in 1:length(columnNames)) 
+    for (i in 1:length(colnames)) 
     {
-      columnNames[i] = gsub("\\()","",columnNames[i])
-      columnNames[i] = gsub("-std$","StdDev",columnNames[i])
-      columnNames[i] = gsub("-mean","Mean",columnNames[i])
-      columnNames[i] = gsub("^(t)","time",columnNames[i])
-      columnNames[i] = gsub("^(f)","freq",columnNames[i])
-      columnNames[i] = gsub("([Gg]ravity)","Gravity",columnNames[i])
-      columnNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",columnNames[i])
-      columnNames[i] = gsub("[Gg]yro","Gyro",columnNames[i])
-      columnNames[i] = gsub("AccMag","AccMagnitude",columnNames[i])
-      columnNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",columnNames[i])
-      columnNames[i] = gsub("JerkMag","JerkMagnitude",columnNames[i])
-      columnNames[i] = gsub("GyroMag","GyroMagnitude",columnNames[i])
+      colnames[i] = gsub("\\()","",colnames[i])
+      colnames[i] = gsub("-std$","StdDev",colnames[i])
+      colnames[i] = gsub("-mean","Mean",colnames[i])
+      colnames[i] = gsub("^(t)","time",colnames[i])
+      colnames[i] = gsub("^(f)","freq",colnames[i])
+      colnames[i] = gsub("([Gg]ravity)","Gravity",colnames[i])
+      colnames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colnames[i])
+      colnames[i] = gsub("[Gg]yro","Gyro",colnames[i])
+      colnames[i] = gsub("AccMag","AccMagnitude",colnames[i])
+      colnames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",colnames[i])
+      colnames[i] = gsub("JerkMag","JerkMagnitude",colnames[i])
+      colnames[i] = gsub("GyroMag","GyroMagnitude",colnames[i])
     };
     
     # Reassigning the new descriptive column names to the MergedData set
-    columnNames(MergedData) = columnNames;
+    colnames(MergedData) = colnames;
 
 # __!__!__!  End of Section 4  __!__!__!
 # ---------------------------------------------------------------------------------------------------------------
