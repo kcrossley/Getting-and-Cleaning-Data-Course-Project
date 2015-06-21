@@ -37,10 +37,11 @@
             features     = read.table('./features.txt',header=FALSE);
         
         # Assign column names from the data imported
+          columnNames(activityType)  = c('activityId','activityType');
           columnNames(yTrain)        = "activityId";
           columnNames(subjectTrain)  = "subjectId";
           columnNames(xTrain)        = features[,2]; 
-          columnNames(activityType)  = c('activityId','activityType');
+
               
         # Create the final training set by merging the subject_test, xtest and ytest files
           trainingData = cbind(yTrain,subjectTrain,xTrain);
@@ -129,14 +130,14 @@
 
 # 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-    # Create a new table, MergedDataNoActivityType without the activityType column
-    MergedDataNoActivityType  = MergedData[,names(MergedData) != 'activityType'];
+    # Create a new table, MergedDataWithoutActivityType without the activityType column
+    MergedDataWithoutActivityType  = MergedData[,names(MergedData) != 'activityType'];
     
-    # Summarizing the MergedDataNoActivityType table to include just the mean of each variable for each activity and each subject
-    tidyData    = aggregate(MergedDataNoActivityType[,names(MergedDataNoActivityType) != c('activityId','subjectId')],
-                            by=list(activityId=MergedDataNoActivityType$activityId,subjectId = MergedDataNoActivityType$subjectId),mean);
+    # Summarizing the MergedDataWithoutActivityType table to include just the mean of each variable for each activity and each subject
+    tidyData    = aggregate(MergedDataWithoutActivityType[,names(MergedDataWithoutActivityType) != c('activityId','subjectId')],
+                            by=list(activityId=MergedDataWithoutActivityType$activityId,subjectId = MergedDataWithoutActivityType$subjectId),mean);
     
-    # Merging the tidyData with activityType to include descriptive acitvity names
+    # Merging the tidyData with activityType to include descriptive activity names
     tidyData    = merge(tidyData,activityType,by='activityId',all.x=TRUE);
     
     # Export the tidyData set 
