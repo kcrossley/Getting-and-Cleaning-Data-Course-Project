@@ -29,22 +29,26 @@ For each record in the dataset it is provided:
 
 ### Section 1. Merge the training and the test sets to create one data set.
 After setting the source directory for the files, read into tables the data located in each of the directories
-	Training Data
-        -- Read in the data from files
-          -- import the X training set
-			-- xTrain = x_train.txt
-          -- import the X training set
-			-- yTrain = y_train.txt
-          -- Import the Activity Labels file
-				activityType = activity_labels.txt
-          # Import the subject file
-				subjectTrain = subject_train.txt
-          # Import features.txt
-				features  = ./features.txt    
-        # Assign column names from the data imported             
-        # Create the final training set by merging the subject_test, xtest and ytest files
-        # Variable: trainingData = the merged dataset
-	End of training data
+
+Training Data -- Processes:
+- Read in the data from files
+- Import the X training set
+- Import the X training set
+- Import the Activity Labels file
+- Import the subject file
+- Import features.txt 
+- Assign column names from the data imported             
+- Create the final training set by merging the subject_test, xtest and ytest files
+
+Training Data -- Variables:
+- xTrain = x_train.txt
+- yTrain = y_train.txt
+- features  = ./features.txt 
+- subjectTrain = subject_train.txt
+- activityType = activity_labels.txt
+- trainingData = the merged dataset
+
+End of training data
 	
 	Test data
 		--  Read in the data from the flat files
